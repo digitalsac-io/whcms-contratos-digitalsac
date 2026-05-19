@@ -71,6 +71,26 @@ use DigitalSac\MpContratos\Contract\PublicLinkService;
       </table>
     </div>
 
+    <?php if ($row->status === 'expired'): ?>
+    <div class="panel panel-warning">
+      <div class="panel-heading"><b>Reativar contrato</b></div>
+      <div class="panel-body">
+        <p style="margin:0 0 8px 0;font-size:12px;color:#666;">
+          O contrato foi marcado como <code>expired</code> porque a validade
+          (<?= !empty($row->expires_at) ? htmlspecialchars(date('d/m/Y', strtotime((string) $row->expires_at)), ENT_QUOTES, 'UTF-8') : '—' ?>)
+          venceu. Reative para que o cliente volte a poder assinar.
+        </p>
+        <form method="post" action="<?= $base ?>&action=contract_reactivate">
+          <?= $csrf ?>
+          <input type="hidden" name="id" value="<?= (int) $row->id ?>">
+          <label style="font-size:12px;">Estender validade (dias):</label>
+          <input type="number" name="extend_days" class="form-control input-sm" value="30" min="0" max="3650" style="margin-bottom:6px;">
+          <button class="btn btn-warning btn-sm" type="submit">Reativar contrato</button>
+        </form>
+      </div>
+    </div>
+    <?php endif; ?>
+
     <?php if (!in_array($row->status, ['signed','cancelled'], true)): ?>
     <div class="panel panel-default">
       <div class="panel-heading"><b>Enviar para assinatura</b></div>

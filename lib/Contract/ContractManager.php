@@ -259,6 +259,11 @@ final class ContractManager
     public function expireOverdue(): int
     {
         $now = date('Y-m-d H:i:s');
+
+        // 1) Expire contracts whose own expires_at has passed AND that don't have
+        //    any active (unused, non-expired) public signature link. While a valid
+        //    link exists the client can still sign, so the contract should remain
+        //    in its current pending/sent status.
         $rows = Capsule::table(Migrator::TABLE_CONTRACTS)
             ->whereIn('status', [self::STATUS_PENDING, self::STATUS_SENT])
             ->whereNotNull('expires_at')
@@ -267,6 +272,9 @@ final class ContractManager
 
         $count = 0;
         foreach ($rows as $r) {
+            if ($this->hasActivePublicLink((int) $r->id, $now)) {
+                continue;
+            }
             Capsule::table(Migrator::TABLE_CONTRACTS)->where('id', $r->id)->update([
                 'status'     => self::STATUS_EXPIRED,
                 'updated_at' => $now,
@@ -274,7 +282,68 @@ final class ContractManager
             Logger::event('expired', (int) $r->id);
             $count++;
         }
+
+        // 2) Auto-recover: any contract sitting in `expired` that still has an
+        //    active public link is brought back to `sent` so the client can use it.
+        $expiredRows = Capsule::table(Migrator::TABLE_CONTRACTS)
+            ->where('status', self::STATUS_EXPIRED)
+            ->get();
+
+        foreach ($expiredRows as $r) {
+            if (!$this->hasActivePublicLink((int) $r->id, $now)) {
+                continue;
+            }
+            $this->reactivate((int) $r->id, null, 'auto: link público ativo');
+        }
+
         return $count;
+    }
+
+    /**
+     * Returns true when the contract has at least one public signature link
+     * that has neither been consumed nor passed its own expires_at.
+     */
+    private function hasActivePublicLink(int $contractId, ?string $now = null): bool
+    {
+        $now ??= date('Y-m-d H:i:s');
+        return Capsule::table(Migrator::TABLE_PUBLIC_LINKS)
+            ->where('contract_id', $contractId)
+            ->whereNull('used_at')
+            ->where('expires_at', '>', $now)
+            ->exists();
+    }
+
+    /**
+     * Bring an expired contract back to `sent` (or `pending` if it was never
+     * delivered). Useful when an active public link still exists or when an
+     * admin extends the validity manually.
+     */
+    public function reactivate(int $contractId, ?int $adminId = null, string $reason = ''): bool
+    {
+        $row = $this->find($contractId);
+        if (!$row) {
+            return false;
+        }
+        if ($row->status !== self::STATUS_EXPIRED) {
+            return false;
+        }
+
+        $hasSentLog = Capsule::table(Migrator::TABLE_LOGS)
+            ->where('contract_id', $contractId)
+            ->where('event', 'like', 'sent_%')
+            ->exists();
+        $newStatus = $hasSentLog ? self::STATUS_SENT : self::STATUS_PENDING;
+
+        Capsule::table(Migrator::TABLE_CONTRACTS)->where('id', $contractId)->update([
+            'status'     => $newStatus,
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        Logger::event('reactivated', $contractId, [
+            'from'   => self::STATUS_EXPIRED,
+            'to'     => $newStatus,
+            'reason' => $reason,
+        ], null, $adminId);
+        return true;
     }
 
     public function markSent(int $contractId, string $channel): void

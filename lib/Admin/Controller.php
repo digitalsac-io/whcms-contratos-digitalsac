@@ -59,6 +59,7 @@ final class Controller
                 'contract_cancel'     => $this->contractCancel(),
                 'contract_delete'     => $this->contractDelete(),
                 'contract_link'       => $this->contractLink(),
+                'contract_reactivate' => $this->contractReactivate(),
 
                 'products'            => $this->productMappings(),
                 'product_save'        => $this->productSave(),
@@ -628,6 +629,31 @@ final class Controller
         $id = (int) ($_POST['id'] ?? 0);
         $token = $this->links->create($id);
         $this->redirect('contract_view', ['id' => $id, 'msg' => 'Link público gerado: ' . $this->links->url($token)]);
+    }
+
+    private function contractReactivate(): void
+    {
+        Csrf::assertValidPost();
+        $id     = (int) ($_POST['id'] ?? 0);
+        $extend = (int) ($_POST['extend_days'] ?? 0);
+        if ($id <= 0) {
+            $this->redirect('contracts', ['msg' => 'Contrato inválido.']);
+            return;
+        }
+
+        // Optional: extend contract validity so it doesn't immediately re-expire.
+        if ($extend > 0) {
+            Capsule::table(Migrator::TABLE_CONTRACTS)->where('id', $id)->update([
+                'expires_at' => (new \DateTimeImmutable("+{$extend} days"))->format('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+        }
+
+        $ok = $this->contracts->reactivate($id, null, $extend > 0 ? "manual: +{$extend} dias" : 'manual');
+        $this->redirect('contract_view', [
+            'id'  => $id,
+            'msg' => $ok ? 'Contrato reativado.' : 'Não foi possível reativar (somente contratos com status "expired").',
+        ]);
     }
 
     // ---------------------------------------------------------------------
