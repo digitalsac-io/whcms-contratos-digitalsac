@@ -1,0 +1,181 @@
+<h2 style="text-align:center;">CONTRATO DE LICENCIAMENTO E PRESTACAO DE SERVICOS — DIGIGO E DIGIAPI</h2>
+
+<p style="text-align:center;">
+  <strong>Contrato nº {{contrato.numero}}</strong>
+</p>
+
+<p>Pelo presente instrumento particular, de um lado:</p>
+
+<p>
+  <strong>CONTRATANTE:</strong>
+  {{cliente.empresa}},
+  inscrito(a) no CPF/CNPJ sob nº <strong>{{cliente.cpf_cnpj}}</strong>,
+  com endereço em {{cliente.endereco_completo}},
+  e-mail {{cliente.email}},
+  telefone {{cliente.telefone}},
+  doravante denominado simplesmente <strong>CONTRATANTE</strong>.
+</p>
+
+<p>De outro lado:</p>
+
+<p>
+  <strong>TISTEC TELEINFORMATICA COMERCIO E SERVICOS LTDA</strong>,
+  pessoa juridica de direito privado, inscrita no CNPJ sob nº
+  <strong>10.226.128/0001-21</strong>, doravante denominada
+  <strong>LICENCIANTE</strong>, <strong>PRESTADORA</strong> ou
+  <strong>TISTEC</strong>, responsavel pela titularidade, comercializacao,
+  licenciamento, hospedagem, operacao, manutencao, suporte e gestao das
+  plataformas <strong>DigiGo</strong> e <strong>DigiAPI</strong>.
+</p>
+
+<p>
+  Para fins financeiros e operacionais de cobranca, a
+  <strong>BUENO INTERMEDIACOES E COBRANCAS LTDA</strong>,
+  pessoa juridica de direito privado, inscrita no CNPJ sob nº
+  <strong>41.830.192/0001-40</strong>, doravante denominada <strong>BUENO</strong>,
+  podera atuar como empresa autorizada pela TISTEC para emissao de cobrancas.
+</p>
+
+<h3>CLAUSULA 1ª — DO OBJETO</h3>
+
+<p>
+  1.1. O presente contrato tem por objeto o licenciamento de uso e a prestacao
+  de servicos de acesso, hospedagem, operacao e suporte das plataformas
+  <strong>DigiGo</strong> e/ou <strong>DigiAPI</strong>, conforme produto, plano,
+  quantidade de canais, valores, ciclo e condicoes comerciais contratadas.
+</p>
+
+<p>1.2. O servico contratado e:</p>
+
+<ul>
+  <li><strong>Produto:</strong> {{servico.nome}}</li>
+  <li><strong>Modalidade:</strong> {{custom.modalidade}}</li>
+  <li><strong>Quantidade de canais contratados:</strong> {{custom.quantidade_canais}}</li>
+  <li><strong>Valor por canal:</strong> {{custom.valor_por_canal_formatado}}</li>
+  <li><strong>Valor total:</strong> {{servico.valor_formatado}}</li>
+  <li><strong>Valor por extenso:</strong> {{servico.valor_extenso}}</li>
+  <li><strong>Ciclo:</strong> {{servico.ciclo}}</li>
+  <li><strong>Dominio/Subdominio:</strong> {{servico.dominio}}</li>
+  <li><strong>Contrato nº:</strong> {{contrato.numero}}</li>
+</ul>
+
+<h3>CLAUSULA 2ª — DAS PLATAFORMAS CONTRATADAS</h3>
+<p>
+  2.1. A contratacao podera abranger somente DigiGo, somente DigiAPI ou ambas,
+  conforme indicado na proposta comercial, pedido, fatura, checkout, painel ou ordem de servico.
+</p>
+
+<h3>CLAUSULA 3ª — DO PAGAMENTO</h3>
+<p>
+  3.1. O valor contratado e de <strong>{{servico.valor_formatado}}</strong>
+  (<strong>{{servico.valor_extenso}}</strong>), em ciclo <strong>{{servico.ciclo}}</strong>.
+</p>
+<p>
+  3.2. Os pagamentos deverao ser realizados nas datas de vencimento indicadas na fatura,
+  por meio dos canais e formas de cobranca disponibilizados pela LICENCIANTE e/ou pela
+  empresa autorizada para cobranca.
+</p>
+<p>
+  3.3. O nao pagamento ate a data de vencimento podera acarretar incidencia de multa moratoria
+  de 2% (dois por cento), juros de 1% (um por cento) ao mes pro rata die e atualizacao monetaria,
+  sem prejuizo de medidas de cobranca.
+</p>
+<p>
+  3.4. Em caso de inadimplencia, a LICENCIANTE podera suspender parcial ou totalmente o acesso
+  aos servicos apos notificacao, ate a regularizacao dos valores em aberto.
+</p>
+
+<h3>CLAUSULA 4ª — DO REAJUSTE DE PRECO</h3>
+<p>
+  4.1. Os valores deste contrato serao reajustados anualmente, a cada 12 (doze) meses,
+  contados da data de inicio da vigencia, pelo indice IGP-M/FGV.
+</p>
+<p>
+  4.2. Na hipotese de extincao, indisponibilidade, descontinuidade ou inaplicabilidade do
+  IGP-M/FGV, sera utilizado indice oficial substituto que reflita a inflacao do periodo,
+  preferencialmente o IPCA/IBGE.
+</p>
+<p>
+  4.3. Reajustes decorrentes de alteracoes legais, tributarias, regulatorias, setoriais,
+  cambiais ou de custos comprovadamente extraordinarios poderao ser aplicados, mediante
+  comunicacao previa ao CONTRATANTE.
+</p>
+
+<h3>CLAUSULA 5ª — DA VIGENCIA, CANCELAMENTO E RESCISAO</h3>
+<p>
+  5.1. Este contrato entra em vigor na data de seu aceite/assinatura eletronica e permanece
+  valido por prazo indeterminado, observadas as condicoes comerciais do ciclo contratado.
+</p>
+<p>
+  5.1.1. A renovacao deste contrato ocorrera automaticamente ao final de cada ciclo de cobranca
+  (mensal, trimestral, semestral, anual ou outro contratado), independentemente de aviso previo,
+  salvo manifestacao expressa em sentido contrario por qualquer das partes, nos termos desta clausula.
+</p>
+<p>
+  5.2. O cancelamento sem multa devera ser solicitado com antecedencia minima de
+  30 (trinta) dias da proxima renovacao/cobranca, para produzir efeitos no ciclo subsequente.
+</p>
+<p>
+  5.3. Caso o CONTRATANTE solicite o cancelamento sem observar o aviso previo de 30 (trinta)
+  dias, podera ser cobrado o ciclo imediatamente seguinte, em razao da reserva de capacidade,
+  custos operacionais e planejamento de atendimento.
+</p>
+<p>
+  5.4. Havendo previsao de fidelidade comercial em proposta, aditivo ou condicao promocional,
+  a rescisao antecipada por iniciativa do CONTRATANTE implicara multa nao compensatoria de
+  30% (trinta por cento) sobre o saldo contratual remanescente ate o termo final da fidelidade,
+  sem prejuizo dos valores ja vencidos.
+</p>
+<p>
+  5.5. A LICENCIANTE podera rescindir este contrato, de pleno direito, em caso de inadimplencia
+  superior a 15 (quinze) dias, uso indevido da plataforma, violacao legal ou contratual,
+  preservado o direito de cobranca dos valores devidos.
+</p>
+
+<h3>CLAUSULA 6ª — DA ASSINATURA ELETRONICA</h3>
+<p>
+  6.1. As partes reconhecem como valida a assinatura eletronica deste contrato,
+  inclusive por aceite no painel, por clique ou por assinatura em link publico tokenizado.
+</p>
+
+<h3>CLAUSULA 7ª — DAS DISPOSICOES GERAIS</h3>
+<p>
+  7.1. As partes comprometem-se a observar a legislacao aplicavel, inclusive normas de
+  protecao de dados pessoais, sigilo e seguranca da informacao, no limite de suas responsabilidades.
+</p>
+<p>
+  7.2. A tolerancia de uma parte para com a outra quanto ao descumprimento de qualquer obrigacao
+  nao implicara novacao, renuncia ou alteracao contratual.
+</p>
+<p>
+  7.3. Este contrato e regido pelas leis brasileiras e fica eleito o foro da comarca de
+  Sao Paulo/SP, com renuncia expressa a qualquer outro, por mais privilegiado que seja.
+</p>
+
+<p style="margin-top:40px;">
+  {{contratada.cidade}}/{{contratada.uf}}, {{contrato.data_geracao_extenso}}.
+</p>
+
+<br><br>
+
+<table style="width:100%; margin-top:40px;">
+  <tr>
+    <td style="width:50%; text-align:center; vertical-align:top;">
+      <p>________________________________________</p>
+      <p><strong>CONTRATANTE</strong></p>
+      <p>{{cliente.nome}}</p>
+      <p>{{cliente.empresa}}</p>
+      <p>CPF/CNPJ: {{cliente.cpf_cnpj}}</p>
+    </td>
+
+    <td style="width:50%; text-align:center; vertical-align:top;">
+      <p>
+        <img src="{{contratada.assinatura_data_uri}}" alt="Assinatura da contratada" style="max-height:70px;">
+      </p>
+      <p><strong>LICENCIANTE / PRESTADORA</strong></p>
+      <p>{{contratada.razao_social}}</p>
+      <p>CNPJ: {{contratada.cnpj}}</p>
+      <p>{{contratada.signatory_name}} — {{contratada.signatory_role}}</p>
+    </td>
+  </tr>
+</table>

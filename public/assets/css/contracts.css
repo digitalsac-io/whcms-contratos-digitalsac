@@ -1,0 +1,126 @@
+/* MP Contratos — public signature page */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #2c3e50;
+  background: #f5f7fa;
+  line-height: 1.5;
+}
+
+.mp-container { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+
+.mp-header {
+  background: linear-gradient(135deg, #0c6dfd 0%, #6b46c1 100%);
+  color: #fff;
+  padding: 26px 0 22px;
+  text-align: center;
+}
+.mp-header h1 { margin: 0; font-size: 24px; font-weight: 600; }
+.mp-header p  { margin: 6px 0 0; opacity: .9; font-size: 14px; }
+
+.mp-main { padding: 24px 0 60px; }
+
+.mp-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 4px 24px rgba(0,0,0,.04);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.mp-card-head {
+  padding: 14px 20px;
+  border-bottom: 1px solid #edf0f5;
+  font-weight: 600;
+  color: #2c3e50;
+  background: #fafbfd;
+}
+.mp-card-body { padding: 20px; }
+
+.mp-contract {
+  max-height: 480px;
+  overflow-y: auto;
+  font-size: 14px;
+  padding: 24px;
+  border: 1px solid #edf0f5;
+  border-radius: 6px;
+  background: #fff;
+}
+.mp-contract h1, .mp-contract h2, .mp-contract h3 { color: #1a202c; }
+.mp-contract p { margin: 0 0 12px; }
+
+.mp-method { margin-bottom: 22px; }
+.mp-method > label { font-size: 15px; }
+.mp-help { color: #6c757d; font-size: 13px; margin: 8px 0; }
+
+.mp-sign-pad {
+  display: block;
+  border: 2px dashed #b8c1cf;
+  border-radius: 8px;
+  background: #fafafa;
+  touch-action: none;
+  cursor: crosshair;
+  width: 100%;
+  height: 200px;
+  margin-top: 8px;
+}
+.mp-pad-actions { margin-top: 8px; }
+
+.mp-checkbox-block {
+  display: none;
+  margin-top: 10px;
+  padding: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+}
+
+.mp-fineprint {
+  color: #6c757d;
+  font-size: 12px;
+  margin: 18px 0 14px;
+  line-height: 1.5;
+}
+
+.mp-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .15s ease, transform .05s ease;
+}
+.mp-btn:hover    { opacity: .92; }
+.mp-btn:active   { transform: translateY(1px); }
+.mp-btn-primary  { background: #0c6dfd; color: #fff; }
+.mp-btn-ghost    { background: transparent; color: #6c757d; border: 1px solid #d9dee5; }
+.mp-btn-block    { display: block; width: 100%; padding: 14px; font-size: 16px; margin-top: 12px; }
+
+.mp-alert {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.mp-alert-danger  { background: #fdecea; color: #8a2a1f; border: 1px solid #f5c6c0; }
+.mp-alert-success { background: #e8f5ec; color: #1f6b3a; border: 1px solid #b9dec4; }
+
+.mp-success .mp-card-body h2 { margin-top: 12px; }
+
+.mp-footer {
+  border-top: 1px solid #e6e9ee;
+  padding: 14px 0;
+  text-align: center;
+  color: #98a2b3;
+  background: #fff;
+}
+
+@media (max-width: 600px) {
+  .mp-contract  { padding: 16px; max-height: 380px; }
+  .mp-card-body { padding: 14px; }
+  .mp-header h1 { font-size: 20px; }
+}
